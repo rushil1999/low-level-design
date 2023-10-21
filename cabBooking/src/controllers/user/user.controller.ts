@@ -9,9 +9,15 @@ class UserControllerClass {
   }
 
   registerUser(req: Request, res: Response): void {
-    const { username, email, userType } = req.body;
-    const response: User = UserService.registerUser(username, userType);
-    res.json(response);
+    try {
+      const { username, email, userType } = req.body;
+      const response: User = UserService.registerUser(username, userType);
+      res.json(response);
+    }
+    catch (error: any) {
+      res.status(400).json(error)
+    }
+
   }
 }
 
